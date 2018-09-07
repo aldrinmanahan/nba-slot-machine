@@ -93,6 +93,9 @@ h1 img {
 	height: 150px;
 	margin-bottom: 15px;
 }
+.btn {
+	margin-left: 20px;
+}
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
