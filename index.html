@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+	<title>NBA Slot Machine</title>
+
+	<!-- jquery -->
+	<script src="assets/js/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/animate.js"></script>
+
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+
+	<!-- external css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+
+	<!-- fav icon -->
+	<link rel="icon" type="image/gif/png" href="assets/images/favicon.ico">
+
+</head>
+<body>
+
+	<h1 class="text-center"><img class="d-block mx-auto" src="assets/images/title.png"></h1>
+
+	<div class="container-fluid" id="container">
+		
+		<div class="row text-center pt-2">
+			<div class="col-sm-12 col-md-4 col-4">
+				<div class="slot">
+					<div id="slot1" class="slotContainer">
+						<img class="img-fluid img-responsive mb-2" src="assets/images/default.png">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12 col-md-4 col-4">
+				<div class="slot">
+					<div id="slot2" class="slotContainer">
+						<img class="img-fluid img-responsive mb-2" src="assets/images/default.png">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12 col-md-4 col-4">
+				<div class="slot">
+					<div id="slot3" class="slotContainer">
+						<img class="img-fluid img-responsive mb-2" src="assets/images/default.png">
+					</div>
+				</div>
+			</div>
+		</div> <!-- end row -->
+		
+	<div class="btn">
+		<button id="randomizeButton" class="btn" role="button">Shuffle</button>
+	</div>
+		
+	</div> <!-- end container -->
+
+
+	<script type="text/javascript">
+
+		var imageSlot1 = $('#slot1 img');
+		var imageSlot2 = $('#slot2 img');
+		var imageSlot3 = $('#slot3 img');
+
+		var imageLinks = [
+			'assets/images/curry.png',
+			'assets/images/harden.png',
+			'assets/images/jordan.png',
+			'assets/images/kobe.png',
+			'assets/images/lebron.png',
+			'assets/images/shaq.png'
+		];
+
+		$("document").ready(function() {
+			$('#randomizeButton').click(function(){
+
+				var timerSlot1 = randomizeSeconds(3, 6);
+				var timerSlot2 = randomizeSeconds(3, 6);
+				var timerSlot3 = randomizeSeconds(3, 6);
+
+				createTimeOutsPerSecond(function(){
+					randomizeSlotImage(imageSlot1)
+				}, timerSlot1);
+				createTimeOutsPerSecond(function(){
+					randomizeSlotImage(imageSlot2)
+				}, timerSlot2);
+				createTimeOutsPerSecond(function() {
+					randomizeSlotImage(imageSlot3) 
+				}, timerSlot3);
+			});
+		});
+
+		function createTimeOutsPerSecond(callback, duration)
+		{
+			while (duration >= 0) {
+				setTimeout(callback, duration);
+				duration -= 500;
+			}
+		}
+
+		function randomizeSlotImage(slotImage)
+		{
+			slotImage.removeClass('slideInUp animated');
+			slotImage.animateCss('slideOutUp', function() {
+				slotImage.attr('src', imageLinks[randomize(0, 5)]);
+				slotImage.removeClass('slideOutUp animated');
+				slotImage.animateCss('slideInUp');
+			});
+
+		}
+
+		function randomizeSeconds(lower, upper)
+		{
+			return randomize(lower, upper) * 1000;
+		}
+
+		function randomize(lower, upper)
+		{
+			return Math.floor((Math.random() * upper) + lower);
+		}
+
+		
+	</script>
+
+</body>
+</html>
