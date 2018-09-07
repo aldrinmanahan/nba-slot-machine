@@ -87,7 +87,11 @@ h1 img {
 	height: 17vh;
 }
 #container {
-	margin-left: 50px;
+	margin-left: -14px;
+}
+h1 img {
+	height: 150px;
+	margin-bottom: 15px;
 }
 }
 
